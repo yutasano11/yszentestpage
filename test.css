@@ -1,0 +1,123 @@
+/* --- 基本設定 --- */
+:root {
+    --primary-color: #333;
+    --accent-color: #007bff;
+    --bg-light: #f9f9f9;
+    --text-color: #333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; line-height: 1.6; color: var(--text-color); }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* 共通クラス */
+.container { width: 90%; max-width: 1000px; margin: auto; }
+.section-padding { padding: 80px 0; }
+.section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; position: relative; }
+.section-title::after {
+    content: ''; display: block; width: 50px; height: 3px; background: var(--accent-color);
+    margin: 10px auto 0;
+}
+.text-center { text-align: center; }
+.bg-light { background-color: var(--bg-light); }
+
+/* ヘッダー */
+header {
+    background: #fff; height: 70px; position: fixed; width: 100%; top: 0; z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.nav-links { display: flex; gap: 20px; }
+.nav-links a:hover { color: var(--accent-color); transition: 0.3s; }
+.burger { display: none; cursor: pointer; }
+.burger div { width: 25px; height: 3px; background: #333; margin: 5px; transition: 0.3s; }
+
+/* メインビジュアル */
+#hero {
+    height: 100vh;
+    /* ▼ここに test.jpg を指定しました▼ */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('test.jpg');
+    background-size: cover; background-position: center;
+    display: flex; justify-content: center; align-items: center; color: #fff; text-align: center;
+}
+#hero h2 { font-size: 3rem; margin-bottom: 15px; }
+.btn {
+    display: inline-block; padding: 12px 30px; background: var(--accent-color); color: #fff;
+    border-radius: 5px; margin-top: 20px; transition: 0.3s;
+}
+.btn:hover { background: #0056b3; }
+
+/* About */
+.about-content { max-width: 700px; margin: auto; }
+
+/* Profile */
+.profile-wrapper {
+    display: flex; gap: 40px; align-items: center; justify-content: center;
+    flex-wrap: wrap; 
+}
+.img-placeholder {
+    width: 200px; height: 200px; background: #ddd; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #777;
+    object-fit: cover;
+}
+.profile-text { max-width: 500px; }
+.job-title { font-size: 0.9rem; color: var(--accent-color); margin-left: 10px; }
+.skills { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px; }
+.skills span {
+    background: #fff; border: 1px solid #ddd; padding: 5px 15px;
+    border-radius: 20px; font-size: 0.85rem;
+}
+
+/* History (タイムライン) */
+.history-timeline {
+    max-width: 700px; margin: auto; border-left: 2px solid #ddd; padding-left: 20px;
+}
+.history-item { margin-bottom: 40px; position: relative; }
+.history-item::before {
+    content: ''; width: 12px; height: 12px; background: var(--accent-color);
+    border-radius: 50%; position: absolute; left: -27px; top: 6px;
+}
+.history-date { font-weight: bold; color: #888; font-size: 0.9rem; margin-bottom: 5px; }
+
+/* Works */
+.works-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+}
+.work-card {
+    background: #fff; padding: 15px; border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s;
+}
+.work-card:hover { transform: translateY(-5px); }
+.work-img {
+    height: 180px; background: #eee; border-radius: 4px; margin-bottom: 15px;
+    display: flex; align-items: center; justify-content: center; color: #999;
+    /* ↓動画用の設定を追加 */
+    overflow: hidden; 
+    padding: 0; 
+}
+
+/* 動画（iframe）を親要素のサイズに合わせる */
+.work-img iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact & Footer */
+.social-links { text-align: center; margin-top: 30px; }
+.social-links a { margin: 0 15px; font-weight: bold; color: var(--accent-color); }
+footer { background: #333; color: #fff; text-align: center; padding: 20px 0; }
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: absolute; right: 0; height: 92vh; top: 8vh; background: #fff;
+        flex-direction: column; align-items: center; width: 60%;
+        transform: translateX(100%); transition: 0.4s; border-left: 1px solid #eee;
+    }
+    .nav-links li { margin: 30px 0; }
+    .burger { display: block; }
+    .profile-wrapper { text-align: center; }
+}
+.nav-active { transform: translateX(0%); }
